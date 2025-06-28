@@ -1,0 +1,17 @@
+{
+  "name": "integracaocontinuatrabalho",
+  "version": "1.0.0",
+  "description": "",
+  "main": "codigoTestes.js",
+  "devDependencies": {
+    "chai": "^5.2.0",
+    "mocha": "^11.7.1"
+  },
+  "scripts": {
+    "test": "node validacaoTesteAutomatizados.js"
+  },
+  
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
