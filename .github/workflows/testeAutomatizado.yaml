@@ -21,8 +21,9 @@ jobs:
           cache: 'npm'  # Cache para instalação mais rápida
 
       - name: Instalar dependências
-        run: npm install  # Usa package-lock.json exatamente
+        run: npm ci --no-audit  # Instalação limpa e segura
 
       - name: Executar testes
         run: npm test
-        # Variável de ambiente para modo teste
+        env:
+          MOCHA_TEST_PATTERN: 'validacaoTesteAutomatizados.js'  # Nome exato do seu arquivo
