@@ -7,7 +7,7 @@
   },
   "type": "module",
   "scripts": {
-    "test": "mocha test/*.js --loader=testdouble --no-warnings"
+    "test": "mocha validacaoTesteAutomatizados.js --loader=testdouble --no-warnings"
   }
 }
 
