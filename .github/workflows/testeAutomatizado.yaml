@@ -21,7 +21,7 @@ jobs:
           cache: 'npm'  # Cache para instalação mais rápida
 
       - name: Instalar dependências
-        run: npm ci --no-audit  # Usa package-lock.json exatamente
+        run: npm install  # Usa package-lock.json exatamente
 
       - name: Executar testes
         run: npm test
