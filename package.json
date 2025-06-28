@@ -1,13 +1,13 @@
 {
   "devDependencies": {
-    "mocha": "^11.7.1",
     "chai": "^5.2.0",
     "chai-as-promised": "^7.1.1",
-    "testdouble": "^3.16.8"
+    "lodash": "^4.17.21",
+    "mocha": "^11.7.1",
+    "testdouble": "^3.20.2"
   },
   "type": "module",
   "scripts": {
     "test": "mocha validacaoTesteAutomatizados.js --loader=testdouble --no-warnings"
   }
 }
-
