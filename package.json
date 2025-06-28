@@ -10,6 +10,7 @@
   "scripts": {
     "test": "node validacaoTesteAutomatizados.js"
   },
+  "type": "module",
   
   "keywords": [],
   "author": "",
