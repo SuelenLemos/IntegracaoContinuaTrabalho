@@ -1,40 +1,33 @@
-import assert from 'node:assert';
 import { describe, it } from 'mocha';
 import { expect } from 'chai';
-
-import {
-  geradorDeTagsDeIdentificacao,
-  verificarSePodeSerAdotado,
-  calcularConsumoDeRacao,
-  decidirTipoDeAtividadePorPorte,
-  buscarDadoAsync
-} from './codigoTestes.js';
+import * as funcoes from './codigoTestes.js';
 
 describe('Testes da disciplina - fundamentos JS', () => {
   
-  it('QUANDO informar um nome para o Pet, DEVE ser impresso na tag com letras maiúsculas', () => {
-    const resultado = geradorDeTagsDeIdentificacao('Pantera');
-    assert.strictEqual(resultado, 'PANTERA');
-    // Alternativa com Chai:
-    expect(resultado).to.equal('PANTERA');
+  it('QUANDO nome for "Pantera", DEVE retornar "PANTERA"', () => {
+    expect(funcoes.geradorDeTagsDeIdentificacao('Pantera')).to.equal('PANTERA');
   });
 
-  it('QUANDO a idade = 1 + porte M, DEVE ser permitida a adoção', () => {
-    expect(verificarSePodeSerAdotado(1, 'M')).to.be.true; // Mais legível com Chai
+  it('QUANDO idade = 1 + porte = "M", DEVE permitir adoção', () => {
+    expect(funcoes.verificarSePodeSerAdotado(1, 'M')).to.be.true;
+    expect(funcoes.verificarSePodeSerAdotado(1, 'm')).to.be.true; // Case insensitive
   });
 
-  it('QUANDO o peso = 14.5, DEVE ser retornado 4350 gramas para o consumo diário', () => {
-    const consumo = calcularConsumoDeRacao('Pitoco', 1, 14.5);
-    assert.strictEqual(consumo, 4350);
+  it('QUANDO peso = 14.5, DEVE retornar 4350g de ração', () => {
+    expect(funcoes.calcularConsumoDeRacao('Pitoco', 1, 14.5)).to.equal(4350);
   });
 
-  it('QUANDO o porte = pequeno, DEVE ser retornada a atividade adequada', () => {
-    const atividade = decidirTipoDeAtividadePorPorte('pequeno');
-    expect(atividade).to.equal('brincar dentro de casa');
+  it('QUANDO porte = "pequeno", DEVE retornar atividade correta', () => {
+    expect(funcoes.decidirTipoDeAtividadePorPorte('pequeno')).to.equal('brincar dentro de casa');
+    expect(funcoes.decidirTipoDeAtividadePorPorte('PEQUENO')).to.equal('brincar dentro de casa');
   });
 
-  it('QUANDO buscar dado de exemplo, DEVE retornar um valor de forma assíncrona', async () => {
-    await expect(buscarDadoAsync()).to.eventually.equal('Pipoca'); // Teste assíncrono com Chai
+  it('QUANDO buscar dado assíncrono, DEVE retornar "Pipoca"', async () => {
+    await expect(funcoes.buscarDadoAsync()).to.eventually.equal('Pipoca');
   });
 
+  // Testes de erro
+  it('QUANDO nome não for string, DEVE lançar erro', () => {
+    expect(() => funcoes.geradorDeTagsDeIdentificacao(123)).to.throw();
+  });
 });
