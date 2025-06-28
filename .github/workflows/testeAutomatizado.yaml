@@ -25,5 +25,4 @@ jobs:
 
       - name: Executar testes
         run: npm test
-        env:
-          NODE_ENV: test  # Variável de ambiente para modo teste
+        # Variável de ambiente para modo teste
