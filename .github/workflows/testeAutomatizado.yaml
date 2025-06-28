@@ -1,23 +1,28 @@
 name: Executar Testes Automatizados (Manual)
 
 on:
-  workflow_dispatch:  
+  workflow_dispatch:  # Permite acionar manualmente
 
 jobs:
   run-tests:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest  # Executa no Ubuntu
 
     steps:
-      - name: Checkout do repositório
-        uses: actions/checkout@v4  
-
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+      
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  
-
-      - name: Instalar dependências
-        run: npm install  
-
-      - name: Executar testes automatizados
-        run: node validacaoTesteAutomatizados.js  
+          node-version: '20'  # Usa Node.js versão 20
+          
+      - name: Instalar dependências (se existirem)
+        run: |
+          if [ -f "package.json" ]; then
+            npm install
+          else
+            echo "Nenhum package.json encontrado. Pulando instalação de dependências."
+          fi
+          
+      - name: Rodar testes automatizados
+        run: node validacaoTesteAutomatizados.js
