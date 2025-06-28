@@ -23,8 +23,9 @@ describe('Testes da disciplina - fundamentos JS', () => {
   });
 
   it('QUANDO buscar dado assíncrono, DEVE retornar "Pipoca"', async () => {
-    await expect(funcoes.buscarDadoAsync()).to.eventually.equal('Pipoca');
-  });
+  const resultado = await funcoes.buscarDadoAsync();
+  expect(resultado).to.equal('Pipoca');
+});
 
   // Testes de erro
   it('QUANDO nome não for string, DEVE lançar erro', () => {
