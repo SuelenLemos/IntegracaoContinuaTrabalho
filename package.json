@@ -1,19 +1,17 @@
 {
   "name": "integracaocontinuatrabalho",
   "version": "1.0.0",
-  "description": "",
-  "main": "codigoTestes.js",
   "type": "module",
+  "scripts": {
+    "test": "mocha validacaoTesteAutomatizados.js --loader=testdouble --no-warnings",
+    "test:ci": "mocha validacaoTesteAutomatizados.js --reporter=mocha-junit-reporter --reporter-options mochaFile=./test-results.xml --loader=testdouble"
+  },
   "devDependencies": {
     "chai": "^5.2.0",
-    "mocha": "^11.7.1"
-  },
-  "scripts": {
-    "test": "mocha validacaoTesteAutomatizados.js --timeout 10000"
-  },
-  
-  
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "mocha": "^11.7.1",
+    "testdouble": "^3.16.8",
+    "mocha-junit-reporter": "^2.2.0",
+    "@babel/register": "^7.24.1"
+  }
 }
+

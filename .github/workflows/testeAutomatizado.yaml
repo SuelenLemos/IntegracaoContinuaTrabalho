@@ -5,26 +5,25 @@ on:
 
 jobs:
   run-tests:
-    runs-on: ubuntu-latest  # Executa no Ubuntu
+    runs-on: ubuntu-latest
+    timeout-minutes: 10  # Evita execuções infinitas
 
     steps:
-      - name: Baixar código do repositório
+      - name: Checkout do código
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-      
+          fetch-depth: 0  # Garante o clone completo do histórico
+
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Usa Node.js versão 20
-          
-      - name: Instalar dependências (se existirem)
-        run: |
-          if [ -f "package.json" ]; then
-            npm install
-          else
-            echo "Nenhum package.json encontrado. Pulando instalação de dependências."
-          fi
-          
-      - name: Rodar testes automatizados
-        run: node validacaoTesteAutomatizados.js
+          node-version: '20'
+          cache: 'npm'  # Cache para instalação mais rápida
+
+      - name: Instalar dependências
+        run: npm ci --no-audit  # Usa package-lock.json exatamente
+
+      - name: Executar testes
+        run: npm test
+        env:
+          NODE_ENV: test  # Variável de ambiente para modo teste
